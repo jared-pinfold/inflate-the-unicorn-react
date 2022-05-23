@@ -24,6 +24,8 @@ const App = () => {
       }
     })
     setUnicorns(newUnicorns)
+    let sound = new Audio('/sounds/sfx-boing10.mp3')
+    sound.play()
   }
 
   return (
