@@ -1,34 +1,19 @@
-import React, {useState, useEffect} from 'react'
-import {getGreeting} from '../apiClient'
+import React, { useState } from 'react'
 
 const App = () => {
-
-  const [greeting, setGreeting] = useState('')
-  const [count, setCount] = useState(0)
-
-  useEffect(() => {
-    getGreeting()
-      .then((greeting) => {
-        console.log(greeting)
-        setGreeting(greeting)
-      })
-  }, [count])
-
   return (
     <>
       <h1> JS CARNIVAL: Inflate The Unicorn! </h1>
-		  <div className="container">
-			  <img className="inflate-an-image" src="/images/waiting-for-photo.png" />
-			  <img className="inflate-an-image" src="/images/waiting-for-photo.png" />
-			  <img className="inflate-an-image" src="/images/waiting-for-photo.png" />
-		  </div>
+      <div className="container">
+        <img className="inflate-an-image" src="/images/waiting-for-photo.png" />
+        <img className="inflate-an-image" src="/images/waiting-for-photo.png" />
+        <img className="inflate-an-image" src="/images/waiting-for-photo.png" />
+      </div>
     </>
   )
-
 }
 
 export default App
-
 
 // <!doctype html>
 // <html lang="en">
