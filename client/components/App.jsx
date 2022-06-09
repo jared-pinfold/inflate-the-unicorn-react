@@ -1,40 +1,43 @@
 import React, { useState } from 'react'
 
 const App = () => {
+  const altText = [
+    'A unicorn with an uninflated balloon instead of a horn',
+    'A unicorn with a slightly inflated balloon instead of a horn',
+    'A unicorn with a mostly inflated balloon instead of a horn',
+    'A unicorn with a fully inflated balloon instead of a horn'
+  ]
+
+  const [unicornLevels, setUnicornLevels] = useState([0, 0, 0])
+
+  function increase (unicornInflationLevel) {
+    if (unicornInflationLevel === 3) return 0
+    return unicornInflationLevel + 1
+  }
+
+  function onClick (index) {
+    const newUnicorns = unicornLevels.map((unicornInflationLevel, i) => {
+      if (i === index) {
+        return increase(unicornInflationLevel)
+      } else {
+        return unicornInflationLevel
+      }
+    })
+    setUnicornLevels(newUnicorns)
+    let sound = new Audio('/sounds/sfx-boing10.mp3')
+    sound.play()
+  }
+
   return (
     <>
       <h1> JS CARNIVAL: Inflate The Unicorn! </h1>
       <div className="container">
-        <img className="inflate-an-image" src="/images/waiting-for-photo.png" />
-        <img className="inflate-an-image" src="/images/waiting-for-photo.png" />
-        <img className="inflate-an-image" src="/images/waiting-for-photo.png" />
+        {unicornLevels.map((unicornInflationLevel, i) => {
+          return <img key={`unicorn${i}`} className="inflate-an-image" src={`/images/unicorn-${unicornInflationLevel}.png`} alt={altText[unicornInflationLevel]} onClick={() => onClick(i)}/>
+        })}
       </div>
     </>
   )
 }
 
 export default App
-
-// <!doctype html>
-// <html lang="en">
-// 	<head>
-// 		<meta charset="utf-8">
-// 		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=0, maximum-scale=1, minimum-scale=1">
-// 		<title>JS CARNIVAL: Inflate The Unicorn!</title>
-// 		<link href="https://fonts.googleapis.com/css?family=Rye&display=swap" rel="stylesheet">
-// 		<link rel="stylesheet" href="../main.css">
-// 	</head>
-// 	<body>
-
-// 		<h1> JS CARNIVAL: Inflate The Unicorn! </h1>
-
-// 		<div class="container">
-// 			<img class="inflate-an-image" src="./images/waiting-for-photo.png" >
-// 			<img class="inflate-an-image" src="./images/waiting-for-photo.png" >
-// 			<img class="inflate-an-image" src="./images/waiting-for-photo.png" >
-// 		</div>
-
-// 		<script src="inflate-the-unicorn.js"></script>
-// 	</body>
-
-// </html>
